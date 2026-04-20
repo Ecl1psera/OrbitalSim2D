@@ -1,4 +1,4 @@
-package OrbitalSim2D.bodies;
+package Bodies;
 
 public class BlackHole extends Body {
     public static double SOL = 1.989e30;

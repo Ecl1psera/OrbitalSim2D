@@ -1,4 +1,4 @@
-package OrbitalSim2D.bodies;
+package Bodies;
 
 public class Planet extends Body{
     public double density = 5513; //kg/m^3

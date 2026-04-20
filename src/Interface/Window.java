@@ -1,8 +1,8 @@
-package OrbitalSim2D;
+package Interface;
 
 import javax.swing.JFrame;
 
-import OrbitalSim2D.bodies.Body;
+import Bodies.Body;
 
 public class Window {
 

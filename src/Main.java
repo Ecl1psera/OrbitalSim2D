@@ -1,8 +1,7 @@
-package OrbitalSim2D;
-
 import javax.swing.JFrame;
 
-import OrbitalSim2D.bodies.*;
+import Bodies.*;
+import Interface.*;
 
 public class Main {
     public static double MAXSTEPS = 1e100;

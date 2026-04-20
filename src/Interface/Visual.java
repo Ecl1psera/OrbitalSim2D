@@ -1,8 +1,8 @@
-package OrbitalSim2D;
+package Interface;
 
 import javax.swing.*;
 
-import OrbitalSim2D.bodies.Body;
+import Bodies.Body;
 
 import java.awt.*;
 import java.awt.event.*;
