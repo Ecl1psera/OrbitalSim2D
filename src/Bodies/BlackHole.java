@@ -16,10 +16,13 @@ public class BlackHole extends Body {
     private double schwarzschild() {
         return ((2*G*this.mass) / (C*C));
     }
-
-    public void merge(Body smallPlanet) {
-        this.mass += smallPlanet.mass;
-        this.vel = new double[] {this.vel[0] + smallPlanet.vel[0], this.vel[1] + smallPlanet.vel[1]};
+    
+    @Override
+    public void merge(Body objBody) {
+        double[] momThis = {this.mass * this.vel[0], this.mass * this.vel[1]};
+        double[] momObj = {objBody.mass * objBody.vel[0], objBody.mass * objBody.vel[1]};
+        this.mass += objBody.mass;
+        this.vel = new double[] {(momThis[0] + momObj[0])/this.mass, (momThis[1] + momObj[1])/this.mass};
     }
 
     

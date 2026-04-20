@@ -9,6 +9,7 @@ public class Body {
     public double[] accel = new double[2]; // M/S^2
     public double radius; // M
     public double[] force = new double[2]; // N
+    public double density = 5513;
 
 
     public Body(double mass, double x, double y) {
@@ -72,6 +73,20 @@ public class Body {
     public void updatePos(double stepTime) {
         pos[0] += vel[0] * stepTime;
         pos[1] += vel[1] * stepTime;
+    }
+
+    public double findRadius() {
+        double vol = this.mass / this.density;
+        return Math.cbrt((3 * vol) / (4 * Math.PI));
+    }
+
+    public void merge(Body objBody) {
+        double[] momThis = {this.mass * this.vel[0], this.mass * this.vel[1]};
+        double[] momObj = {objBody.mass * objBody.vel[0], objBody.mass * objBody.vel[1]};
+        this.mass += objBody.mass;
+        this.radius = findRadius();
+        this.vel = new double[] {(momThis[0] + momObj[0])/this.mass, (momThis[1] + momObj[1])/this.mass};
+        this.pos = new double[] {(this.pos[0] + objBody.pos[0])/2, (this.pos[1] + objBody.pos[1])/2};
     }
 }
 

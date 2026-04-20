@@ -16,6 +16,8 @@ public class Visual extends JPanel {
     private double camSpeed = -10*scale;
     private boolean camLock = true;
 
+    public boolean pause = true;
+
     public Visual(Body[] bodies) {
         this.bodies = bodies;
         setBackground(Color.BLACK);
@@ -45,6 +47,9 @@ public class Visual extends JPanel {
                 }
                 if (e.getKeyCode() == KeyEvent.VK_E) {
                     camLock = !camLock;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    pause = !pause;
                 }
             }
         });
@@ -76,5 +81,8 @@ public class Visual extends JPanel {
 
             g.fillOval(x - r, y - r, r * 2, r * 2);
         }
+        g.drawString(String.valueOf(pause), 10, 10);
+
     }
+
 }
