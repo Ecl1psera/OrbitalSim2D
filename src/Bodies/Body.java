@@ -7,9 +7,10 @@ public class Body {
     public double[] pos = new double[2]; // M
     public double[] vel = new double[2]; // M/S
     public double[] accel = new double[2]; // M/S^2
+    public double[] prevAccel = new double[2]; // M/S^2; to calcualte velocity through verlet
     public double radius; // M
     public double[] force = new double[2]; // N
-    public double density = 5513;
+    public double density = 5513; // KG/M^3
 
 
     public Body(double mass, double x, double y) {
@@ -61,18 +62,19 @@ public class Body {
     
     public void updateAccel(Body[] bodies) {
         force = calcForce(bodies);
+        prevAccel = accel;
         accel[0] = force[0]/this.mass;
         accel[1] = force[1]/this.mass;
     }
 
     public void updateVel(double stepTime) {
-        vel[0] += accel[0] * stepTime;
-        vel[1] += accel[1] * stepTime;
+        vel[0] += 0.5*(accel[0] + prevAccel[0]) * stepTime;
+        vel[1] += 0.5*(accel[1] + prevAccel[1]) * stepTime;
     }
 
     public void updatePos(double stepTime) {
-        pos[0] += vel[0] * stepTime;
-        pos[1] += vel[1] * stepTime;
+        pos[0] = pos[0] + (vel[0] * stepTime) + 0.5*(accel[0]*(stepTime*stepTime));
+        pos[1] = pos[1] + (vel[1] * stepTime) + 0.5*(accel[1]*(stepTime*stepTime));
     }
 
     public double findRadius() {
