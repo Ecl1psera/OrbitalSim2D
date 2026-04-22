@@ -1,4 +1,4 @@
-package Bodies;
+package orbitalSim.Bodies;
 
 public class Star extends Body{
     public double density = 1408;

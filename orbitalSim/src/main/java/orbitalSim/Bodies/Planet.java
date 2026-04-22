@@ -1,4 +1,4 @@
-package Bodies;
+package orbitalSim.Bodies;
 
 public class Planet extends Body{
 

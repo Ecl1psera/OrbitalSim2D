@@ -1,12 +1,18 @@
+package orbitalSim;
+
 import javax.swing.JFrame;
 
-import Bodies.*;
-import Interface.*;
+import orbitalSim.Bodies.Body;
+import orbitalSim.Bodies.Star;
+import orbitalSim.Bodies.BlackHole;
+import orbitalSim.Bodies.Planet;
+
+import orbitalSim.Interface.VulWindow;
 
 public class Main {
     public static double MAXSTEPS = 1e100;
     public static double STEPTIME = 10; // How long a step lasts for in seconds
-    public static void main() {
+    public static void main(String[] args) {
         Body planet1 = new Planet(5.97e24, 0, 0);
         Body moon = new Planet(7.34e22, 0, planet1.radius+384400000, 1e3, 0);
         Body star1 = new Star(BlackHole.SOL, 0, 0);
@@ -17,12 +23,13 @@ public class Main {
     }
     
     public static void mainLoop(Body[] bodies) {
-        JFrame frame = Window.createWindow(bodies);
-        Visual panel = (Visual) frame.getContentPane().getComponent(0);
-        boolean interrupted = panel.pause;
+        VulWindow window = new VulWindow(bodies);
+        boolean interrupted = window.pause;
+        boolean running = true;
 
-        while(true) {
-            interrupted = panel.pause;
+       
+        while(running) {
+            interrupted = window.pause;
             if (!interrupted){
                 for (Body b : bodies) {
                     b.updatePos(STEPTIME);
@@ -35,16 +42,14 @@ public class Main {
                 for (Body b : bodies) {
                     b.updateVel(STEPTIME);
                 }
-
-                
-
             }
-            panel.repaint();
+
+            running = window.paint();
 
             System.out.println(bodies[0].pos[1] -  bodies[1].pos[1]);
 
             try {
-                Thread.sleep(0, 1);
+                Thread.sleep(0,1);
             } catch (InterruptedException e){
                 System.out.println("interupted");
             }

@@ -1,18 +1,20 @@
-package Interface;
+package orbitalSim.Interface;
 
 import javax.swing.*;
 
-import Bodies.Body;
+import orbitalSim.Bodies.Body;
 
 import java.awt.*;
 import java.awt.event.*;
 
+import org.lwjgl.glfw.*;
+
 public class Visual extends JPanel {
 
     private Body[] bodies;
-    private double scale = 1e6;
-    private double camX = 0;
-    private double camY = 0;
+    public double scale = 1e6;
+    public double camX = 0;
+    public double camY = 0;
     private double camSpeed = -10*scale;
     private boolean camLock = true;
 

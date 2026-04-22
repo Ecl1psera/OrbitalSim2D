@@ -1,4 +1,4 @@
-package Bodies;
+package orbitalSim.Bodies;
 
 public class Body {
     protected static double G = 6.6743e-11; //m3 kg-1 s-2
