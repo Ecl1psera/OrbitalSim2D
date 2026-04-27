@@ -14,20 +14,15 @@ repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
+	
+
 
 dependencies {
-
-    // This dependency is used by the application.
-    implementation(libs.guava)
+	implementation(libs.guava)
 
     val lwjglVersion = "3.4.1"
-val lwjglNatives = "natives-linux"
+	val lwjglNatives = "natives-linux"
 
-repositories {
-	mavenCentral()
-}
-
-dependencies {
 	implementation(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
 
 	implementation("org.lwjgl", "lwjgl")
@@ -110,7 +105,7 @@ dependencies {
 	implementation ("org.lwjgl", "lwjgl-yoga", classifier = lwjglNatives)
 	implementation ("org.lwjgl", "lwjgl-zstd", classifier = lwjglNatives)
 }
-}
+
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
